@@ -1,0 +1,20 @@
+{
+    "name": "renaud/peter-park",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Renaud Douze",
+            "email": "renauddouze@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    },
+    "require-dev": {
+        "behat/behat": "^3.10"
+    }
+}
