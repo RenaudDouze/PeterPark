@@ -1,24 +1,23 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Action\RegisterVehicle;
 
-use Domain\Entity\Vehicle;
-use Domain\Entity\Fleet;
-use Infra\Exception\AlreadyInFleetException;
+use \Domain\Entity\Fleet;
+use \Domain\Entity\Vehicle;
+use \Infra\Exception\AlreadyInFleet;
 
 class RegisterVehicle
 {
-    /**
-     * @throws \RuntimeException
-     */
-    public static function do(Vehicle $vehicle, Fleet $fleet): Fleet
+    public static function do(Vehicle $vehicle, Fleet $fleet) : Fleet
     {
         try {
             $fleet->add($vehicle);
 
             return $fleet;
-        } catch (AlreadyInFleetException $e) {
-            throw new \RuntimeException("Error while register the vehicle", 1, $e);
+        } catch (AlreadyInFleet $e) {
+            throw new \RuntimeException('Error while register the vehicle', 1, $e);
         }
     }
 }

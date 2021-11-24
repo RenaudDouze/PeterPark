@@ -20,6 +20,10 @@
     },
     "require-dev": {
         "behat/behat": "^3.10",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9",
+        "squizlabs/php_codesniffer": "*",
+        "slevomat/coding-standard": "~7.0",
+        "infinityloop-dev/coding-standard": "^0.2.3",
+        "phpstan/phpstan": "^1.2"
     }
 }

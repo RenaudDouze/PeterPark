@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\PHPUnit\Action\ParkVehicle;
 
-use App\Action\ParkVehicle\DudeWheresMyCar;
-use App\Action\ParkVehicle\Park;
-use Domain\Entity\Location;
-use Domain\Entity\Vehicle;
-use PHPUnit\Framework\TestCase;
+use \App\Action\ParkVehicle\DudeWheresMyCar;
+use \App\Action\ParkVehicle\Park;
+use \Domain\Entity\Location;
+use \Domain\Entity\Vehicle;
+use \PHPUnit\Framework\TestCase;
 
 class ParkTest extends TestCase
 {
-    public function testDo()
+    public function testDo() : void
     {
         $vehicle = new Vehicle();
         $location = new Location('ici', 'ici');
@@ -22,7 +24,7 @@ class ParkTest extends TestCase
         $this->assertEquals($location, DudeWheresMyCar::get($vehicle));
     }
 
-    public function testDoException()
+    public function testDoException() : void
     {
         $vehicle = new Vehicle();
         $location = new Location('ici', 'ici');

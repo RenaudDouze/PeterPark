@@ -32,12 +32,12 @@ stop: ## Stop the project (not uninstall)
 ## Tests & CI
 ## ----------------------
 ##
-test: ## Run all tests
-test: phpcs phpunit behat
+tests: ## Run all tests
+tests: phpcs phpstan phpunit behat
 
 phpcs: ## Execute PHPCS analyses
 phpcs: start
-	$(run_php) ./vendor/bin/phpcs
+	$(run_php) ./vendor/bin/phpcs src/ tests/ features/bootstrap --standard=vendor/infinityloop-dev/coding-standard/InfinityloopCodingStandard/ruleset.xml
 
 phpunit: ## Execute PHP Unit tests
 phpunit: start
@@ -46,3 +46,7 @@ phpunit: start
 behat: ## Execute Behat tests
 behat: start
 	$(run_php) ./vendor/bin/behat
+
+phpstan: ## Execute PHPStan tests
+phpstan: start
+	$(run_php) ./vendor/bin/phpstan analyse src tests features/bootstrap --level 3

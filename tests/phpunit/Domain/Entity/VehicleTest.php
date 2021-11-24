@@ -1,25 +1,26 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Tests\PHPUnit\Domain\Entity;
 
-use Domain\Entity\Location;
-use Domain\Entity\Vehicle;
-use Infra\Exception\AlreadyParkedHereException;
-use PHPUnit\Framework\TestCase;
+use \Domain\Entity\Location;
+use \Domain\Entity\Vehicle;
+use \PHPUnit\Framework\TestCase;
 
 class VehicleTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor() : void
     {
         $vehicleOne = new Vehicle('one');
         $vehicleTwo = new Vehicle('two');
         $vehicleOneSame = new Vehicle('one');
-        
+
         $this->assertEquals($vehicleOne, $vehicleOneSame);
         $this->assertNotSame($vehicleOne, $vehicleTwo);
     }
 
-    public function testWhereIs()
+    public function testWhereIs() : void
     {
         $vehicle = new Vehicle();
 
@@ -31,7 +32,7 @@ class VehicleTest extends TestCase
         $this->assertEquals($location, $vehicle->whereIs());
     }
 
-    public function testPark()
+    public function testPark() : void
     {
         $vehicle = new Vehicle();
         $locationD12 = new Location('D', '12');
@@ -40,7 +41,7 @@ class VehicleTest extends TestCase
         $vehicle->park($locationD12);
         $vehicle->park($locationE1);
 
-        $this->expectException(AlreadyParkedHereException::class);
+        $this->expectException(\Infra\Exception\AlreadyParkedHere::class);
         $vehicle->park($locationE1);
     }
 }

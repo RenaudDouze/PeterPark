@@ -1,29 +1,27 @@
 <?php
 
-namespace Domain\Entity;
+declare(strict_types = 1);
 
-use Infra\Exception\AlreadyInFleetException;
+namespace Domain\Entity;
 
 class Fleet
 {
+    /** @var array<\Domain\Entity\Vehicle>  */
     private array $vehicles = [];
 
-    /**
-     * @throws AlreadyInFleetException
-     */
-    public function add(Vehicle $vehicle): int
+    public function add(Vehicle $vehicle) : int
     {
         if ($this->isIn($vehicle)) {
-            throw new AlreadyInFleetException();
+            throw new \Infra\Exception\AlreadyInFleet();
         }
 
         $this->vehicles[] = $vehicle;
 
-        return count($this->vehicles);
+        return \count($this->vehicles);
     }
 
-    public function isIn(Vehicle $vehicle): bool
+    public function isIn(Vehicle $vehicle) : bool
     {
-        return in_array($vehicle, $this->vehicles);
+        return \in_array($vehicle, $this->vehicles);
     }
 }
