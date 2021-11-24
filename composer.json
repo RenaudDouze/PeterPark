@@ -7,14 +7,19 @@
             "email": "renauddouze@gmail.com"
         }
     ],
-    "require": {
-    },
     "autoload": {
         "psr-4": {
-            "": "src"
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\PHPUnit\\": "tests/phpunit",
+            "Tests\\Behat\\": "tests/behat"
         }
     },
     "require-dev": {
-        "behat/behat": "^3.10"
+        "behat/behat": "^3.10",
+        "phpunit/phpunit": "^9"
     }
 }

@@ -2,32 +2,35 @@
 
 namespace Domain\Entity;
 
-use Infra\Exception\AlreadyParkedHereException
+use Infra\Exception\AlreadyParkedHereException;
 
 class Vehicle
 {
-	// Better with an uuid
-	// The only purpose is to differentiate each Vehicle
-	private string $id;
+    // Better with an uuid
+    // The only purpose is to differentiate each Vehicle
+    private string $id;
 
-	private ?Location $location = null;
+    private ?Location $location = null;
 
-	public function __construct()
-	{
-		$this->id = uniqid();
-	}
+    public function __construct(?string $id = null)
+    {
+        $this->id = $id ?? uniqid();
+    }
 
-	public function whereIs(): ?Location
-	{
-		return $location
-	}
+    public function whereIs(): ?Location
+    {
+        return $this->location;
+    }
 
-	public function park(Location $location): void
-	{
-		if ($this->location === $location) {
-			throw new AlreadyParkedHereException("Error Processing Request", 1);
-		}
+    /**
+     * @throws AlreadyParkedHereException
+     */
+    public function park(Location $location): void
+    {
+        if ($this->location === $location) {
+            throw new AlreadyParkedHereException("Error Processing Request", 1);
+        }
 
-		$this->location = $location;
-	}
+        $this->location = $location;
+    }
 }

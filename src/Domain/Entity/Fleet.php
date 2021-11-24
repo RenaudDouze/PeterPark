@@ -2,23 +2,28 @@
 
 namespace Domain\Entity;
 
-use Info/Exception/AlreadyInFleetException;
+use Infra\Exception\AlreadyInFleetException;
 
 class Fleet
 {
-	private array $vehicles = [];
+    private array $vehicles = [];
 
-	public function add(Vehicle $vehicle): void
-	{
-		if ($this->isIn($vehicle)) {
-			throw new AlreadyInFleetException();
-		}
+    /**
+     * @throws AlreadyInFleetException
+     */
+    public function add(Vehicle $vehicle): int
+    {
+        if ($this->isIn($vehicle)) {
+            throw new AlreadyInFleetException();
+        }
 
-		$this->vehicles[] = $vehicle; 
-	} 
+        $this->vehicles[] = $vehicle;
 
-	public function isIn(Vehicle $vehicle): bool
-	{
-		return in_array($vehicle, $this->vehicles);
-	}
+        return count($this->vehicles);
+    }
+
+    public function isIn(Vehicle $vehicle): bool
+    {
+        return in_array($vehicle, $this->vehicles);
+    }
 }

@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  php:
+    image: php:8.0.13-fpm-bullseye
+    volumes:
+      - ".:/app:rw"
+      - "/tmp:/tmp:rw"
+    working_dir: /app
+    init: true
+    user: "$USER_ID:$GROUP_ID"

@@ -7,8 +7,8 @@ use Domain\Entity\Fleet;
 
 class IsRegistered
 {
-	public static function check(Vehicle $vehicle, Fleet $fleet): bool
-	{
-		return $fleet->isIn($vehicle);
-	}
+    public static function check(Vehicle $vehicle, Fleet $fleet): bool
+    {
+        return $fleet->isIn($vehicle);
+    }
 }
