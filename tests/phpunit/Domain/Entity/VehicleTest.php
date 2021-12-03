@@ -22,7 +22,7 @@ class VehicleTest extends TestCase
 
     public function testWhereIs() : void
     {
-        $vehicle = new Vehicle();
+        $vehicle = new Vehicle('one');
 
         $this->assertNull($vehicle->whereIs());
 
@@ -34,7 +34,7 @@ class VehicleTest extends TestCase
 
     public function testPark() : void
     {
-        $vehicle = new Vehicle();
+        $vehicle = new Vehicle('one');
         $locationD12 = new Location('D', '12');
         $locationE1 = new Location('E', '1');
 

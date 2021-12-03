@@ -13,9 +13,6 @@ use \Domain\Entity\Location;
 use \Domain\Entity\Vehicle;
 use \PHPUnit\Framework\Assert;
 
-/**
- * Defines application features from the specific context.
- */
 class FeatureContext implements Context
 {
     private ?Vehicle $vehicle;
@@ -27,19 +24,19 @@ class FeatureContext implements Context
     /** @Given my fleet */
     public function myFleet() : void
     {
-        $this->firstFleet = Create\CreateFleet::do();
+        $this->firstFleet = Create\CreateFleet::do('John Doe');
     }
 
     /** @Given the fleet of another user */
     public function theFleetOfAnotherUser() : void
     {
-        $this->secondFleet = Create\CreateFleet::do();
+        $this->secondFleet = Create\CreateFleet::do('John Snow');
     }
 
     /** @Given a vehicle */
     public function aVehicle() : void
     {
-        $this->vehicle = Create\CreateVehicle::do();
+        $this->vehicle = Create\CreateVehicle::do('one');
     }
 
     /** @Given a location */

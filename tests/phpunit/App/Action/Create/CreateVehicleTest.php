@@ -12,6 +12,6 @@ class CreateVehicleTest extends TestCase
 {
     public function testDo() : void
     {
-        $this->assertInstanceOf(Vehicle::class, CreateVehicle::do());
+        $this->assertInstanceOf(Vehicle::class, CreateVehicle::do('one'));
     }
 }
