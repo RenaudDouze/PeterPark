@@ -10,12 +10,19 @@ use \PHPUnit\Framework\TestCase;
 
 class FleetTest extends TestCase
 {
+    public function testOwner() : void
+    {
+        $amiralFleet = new Fleet('Amiral');
+
+        $this->assertEquals('Amiral', $amiralFleet->getOwnerId());
+    }
+
     public function testAdd() : void
     {
         $vehicleOne = new Vehicle('one');
         $vehicleTwo = new Vehicle('two');
 
-        $fleet = new Fleet();
+        $fleet = new Fleet('John Doeuf');
 
         $this->assertEquals(1, $fleet->add($vehicleOne));
         $this->assertEquals(2, $fleet->add($vehicleTwo));
@@ -26,7 +33,7 @@ class FleetTest extends TestCase
         $vehicleOne = new Vehicle('one');
         $vehicleTwo = new Vehicle('two');
 
-        $fleet = new Fleet();
+        $fleet = new Fleet('John Café');
 
         $this->assertEquals(1, $fleet->add($vehicleOne));
         $this->assertEquals(2, $fleet->add($vehicleTwo));
@@ -40,7 +47,7 @@ class FleetTest extends TestCase
         $vehicleOne = new Vehicle('one');
         $vehicleOneSame = new Vehicle('one');
 
-        $fleet = new Fleet();
+        $fleet = new Fleet('Joe Bar');
 
         $this->assertEquals(1, $fleet->add($vehicleOne));
 
@@ -53,7 +60,7 @@ class FleetTest extends TestCase
         $vehicleOne = new Vehicle('one');
         $vehicleTwo = new Vehicle('two');
 
-        $fleet = new Fleet();
+        $fleet = new Fleet('Joe Joe');
 
         $fleet->add($vehicleOne);
 

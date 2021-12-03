@@ -13,7 +13,7 @@ class DudeWheresMyCarTest extends TestCase
 {
     public function testGet() : void
     {
-        $vehicle = new Vehicle();
+        $vehicle = new Vehicle('one');
 
         $this->assertNull(DudeWheresMyCar::get($vehicle));
 

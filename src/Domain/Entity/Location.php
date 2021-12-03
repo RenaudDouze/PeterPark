@@ -15,4 +15,14 @@ class Location
         // but there is so many formats
         // Maybe https://packagist.org/packages/league/geotools will do it
     }
+
+    public function getLongitude() : string
+    {
+        return $this->longitude;
+    }
+
+    public function getLatitude() : string
+    {
+        return $this->latitude;
+    }
 }

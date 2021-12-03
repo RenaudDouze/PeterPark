@@ -13,8 +13,8 @@ class IsRegisteredTest extends TestCase
 {
     public function testCheck() : void
     {
-        $vehicle = new Vehicle();
-        $fleet = new Fleet();
+        $vehicle = new Vehicle('one');
+        $fleet = new Fleet("Joe l'asticot");
 
         $this->assertFalse(IsRegistered::check($vehicle, $fleet));
 

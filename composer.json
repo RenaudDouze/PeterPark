@@ -18,12 +18,18 @@
             "Tests\\Behat\\": "tests/behat"
         }
     },
+    "require": {
+        "php": "^8.0",
+        "symfony/console": "*",
+        "gabordemooij/redbean": "^5.7"
+    },
     "require-dev": {
         "behat/behat": "^3.10",
         "phpunit/phpunit": "^9",
         "squizlabs/php_codesniffer": "*",
         "slevomat/coding-standard": "~7.0",
         "infinityloop-dev/coding-standard": "^0.2.3",
-        "phpstan/phpstan": "^1.2"
+        "phpstan/phpstan": "^1.2",
+        "symfony/thanks": "^1.2"
     }
 }

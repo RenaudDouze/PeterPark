@@ -14,7 +14,7 @@ class ParkTest extends TestCase
 {
     public function testDo() : void
     {
-        $vehicle = new Vehicle();
+        $vehicle = new Vehicle('one');
         $location = new Location('ici', 'ici');
 
         $this->assertNull(DudeWheresMyCar::get($vehicle));
@@ -26,7 +26,7 @@ class ParkTest extends TestCase
 
     public function testDoException() : void
     {
-        $vehicle = new Vehicle();
+        $vehicle = new Vehicle('one');
         $location = new Location('ici', 'ici');
 
         Park::do($vehicle, $location);

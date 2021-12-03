@@ -12,6 +12,14 @@ help:
 .PHONY: start stop
 .PHONY: test ci phpcs phpmd phpstan phpunit behat
 
+# If the first argument is "fleet"...
+ifeq (fleet,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "fleet"
+  FLEET_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(FLEET_ARGS):;@:)
+endif
+
 run_php = docker-compose run --rm php
 
 ##
@@ -50,3 +58,11 @@ behat: start
 phpstan: ## Execute PHPStan tests
 phpstan: start
 	$(run_php) ./vendor/bin/phpstan analyse src tests features/bootstrap --level 3
+
+##
+## Run
+## ----------------------
+##
+fleet: ## Execute the fleet command with all given args
+fleet: start
+	$(run_php) php fleet.php $(FLEET_ARGS)
