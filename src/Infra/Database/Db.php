@@ -8,6 +8,8 @@ use \RedBeanPHP\R;
 
 class Db
 {
+    public const DB_KEY = 'app-db';
+
     public static function connect() : void
     {
         $connectionQuery = \getenv('DATABASE_CONNEXION_QUERY');
@@ -26,6 +28,31 @@ class Db
             throw new \InvalidArgumentException('Env var DATABASE_PASSWORD must be set');
         }
 
-        R::setup($connectionQuery, $dbName, $password);
+        if (! R::hasDatabase(self::DB_KEY)) {
+            R::addDatabase(self::DB_KEY, $connectionQuery, $dbName, $password);
+        }
+
+        R::selectDatabase(self::DB_KEY);
+    }
+
+    public static function disconnect() : void
+    {
+        if (! R::hasDatabase(self::DB_KEY)) {
+            return;
+        }
+
+        R::selectDatabase(self::DB_KEY);
+        R::close();
+    }
+
+    public static function select() : bool
+    {
+        if (! R::hasDatabase(self::DB_KEY)) {
+            return false;
+        }
+
+        R::selectDatabase(self::DB_KEY);
+
+        return true;
     }
 }

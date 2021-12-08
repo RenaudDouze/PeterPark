@@ -6,6 +6,7 @@ namespace Tests\PHPUnit\Infra\Database;
 
 use \Infra\Database\Db;
 use \PHPUnit\Framework\TestCase;
+use \RedBeanPHP\R;
 
 class DbTest extends TestCase
 {
@@ -38,14 +39,26 @@ class DbTest extends TestCase
         Db::connect();
     }
 
-    public function testCantConnect() : void
+    public function testCanConnect() : void
     {
-        \putenv('DATABASE_CONNEXION_QUERY=sqlite:tests/resources/db/test.db');
+        \putenv('DATABASE_CONNEXION_QUERY=sqlite:tests/resources/db/file.db');
         \putenv('DATABASE_DB_NAME=this-is-a-database-name');
         \putenv('DATABASE_PASSWORD=a-very-secure-password-that-nobody-will-ever-know');
 
         Db::connect();
 
-        $this->assertTrue(true);
+        $this->assertTrue(R::testConnection());
+
+        Db::disconnect();
+    }
+
+    protected function setUp() : void
+    {
+        parent::setUp();
+
+        // Remove previously set env vars
+        \putenv('DATABASE_CONNEXION_QUERY');
+        \putenv('DATABASE_DB_NAME');
+        \putenv('DATABASE_PASSWORD');
     }
 }

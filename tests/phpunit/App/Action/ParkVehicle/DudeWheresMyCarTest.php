@@ -22,4 +22,16 @@ class DudeWheresMyCarTest extends TestCase
 
         $this->assertEquals($location, DudeWheresMyCar::get($vehicle));
     }
+
+    public function testGetWithAltitude() : void
+    {
+        $vehicle = new Vehicle('one');
+
+        $this->assertNull(DudeWheresMyCar::get($vehicle));
+
+        $location = new Location('par', 'ici', 100);
+        $vehicle->park($location);
+
+        $this->assertEquals($location, DudeWheresMyCar::get($vehicle));
+    }
 }

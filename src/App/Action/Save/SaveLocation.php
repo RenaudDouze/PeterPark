@@ -4,17 +4,16 @@ declare(strict_types = 1);
 
 namespace App\Action\Save;
 
-use \Domain\Entity\Location as LocationEntity;
-use \Infra\Database\Dto\Location as LocationDto;
-use \Infra\Database\DtoToBean\Location as LocationDtoToBean;
-use \RedBeanPHP\OODBBean;
+use \Domain\Entity\Location;
+use \Infra\Database\Transformer\LocationTransformer;
+use \RedBeanPHP\R;
 
 class SaveLocation
 {
-    public static function do(LocationEntity $fleet) : OODBBean
+    public static function do(Location $location) : int
     {
-        $dtoLocation = LocationDto::createFromEntity($fleet);
+        $bean = LocationTransformer::entityToBean($location);
 
-        return LocationDtoToBean::dtoToBean($dtoLocation);
+        return (int) R::store($bean);
     }
 }

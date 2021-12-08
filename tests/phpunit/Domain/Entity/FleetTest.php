@@ -6,7 +6,10 @@ namespace Tests\PHPUnit\Domain\Entity;
 
 use \Domain\Entity\Fleet;
 use \Domain\Entity\Vehicle;
+use \Infra\Database\Transformer\FleetTransformer;
 use \PHPUnit\Framework\TestCase;
+use \RedBeanPHP\OODBBean;
+use \RedBeanPHP\R;
 
 class FleetTest extends TestCase
 {
@@ -66,5 +69,43 @@ class FleetTest extends TestCase
 
         $this->assertTrue($fleet->isIn($vehicleOne));
         $this->assertFalse($fleet->isIn($vehicleTwo));
+    }
+
+    public function testCreateFromBean() : void
+    {
+        $beanFleet = R::dispense('fleet', 1, false);
+
+        $beanFleet->ownerId = 'CarTreiz';
+
+        $fleet = FleetTransformer::beanToEntity($beanFleet);
+
+        $this->assertEquals('CarTreiz', $fleet->getOwnerId());
+    }
+
+    public function testCreateFromBeanWithVehicles() : void
+    {
+        $beanVehicleOne = R::dispense('vehicle', 1, false);
+        $beanVehicleOne->plateNumber = 'Aix-Marseille';
+        $beanVehicleTwo = R::dispense('vehicle', 1, false);
+        $beanVehicleTwo->plateNumber = 'Marseille-Marignane';
+
+        $beanFleet = R::dispense('fleet', 1, false);
+
+        $beanFleet->ownerId = 'CarTreiz';
+        $beanFleet->ownVehicleList = [
+            $beanVehicleOne,
+            $beanVehicleTwo,
+        ];
+
+        if (! ($beanFleet instanceof OODBBean)) {
+            throw new \RuntimeException();
+        }
+
+        $fleet = FleetTransformer::beanToEntity($beanFleet);
+
+        $this->assertEquals('CarTreiz', $fleet->getOwnerId());
+        $this->assertCount(2, $fleet->getVehicles());
+        $this->assertEquals('Aix-Marseille', $fleet->getVehicles()[0]->getPlateNumber());
+        $this->assertEquals('Marseille-Marignane', $fleet->getVehicles()[1]->getPlateNumber());
     }
 }

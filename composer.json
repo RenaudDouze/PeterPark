@@ -15,13 +15,15 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\PHPUnit\\": "tests/phpunit",
+            "Tests\\Tools\\": "tests/resources",
             "Tests\\Behat\\": "tests/behat"
         }
     },
     "require": {
         "php": "^8.0",
         "symfony/console": "*",
-        "gabordemooij/redbean": "^5.7"
+        "gabordemooij/redbean": "^5.7",
+        "symfony/dotenv": "^6.0"
     },
     "require-dev": {
         "behat/behat": "^3.10",

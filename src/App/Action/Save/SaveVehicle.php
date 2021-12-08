@@ -4,17 +4,16 @@ declare(strict_types = 1);
 
 namespace App\Action\Save;
 
-use \Domain\Entity\Vehicle as VehicleEntity;
-use \Infra\Database\Dto\Vehicle as VehicleDto;
-use \Infra\Database\DtoToBean\Vehicle as VehicleDtoToBean;
-use \RedBeanPHP\OODBBean;
+use \Domain\Entity\Vehicle;
+use \Infra\Database\Transformer\VehicleTransformer;
+use \RedBeanPHP\R;
 
 class SaveVehicle
 {
-    public static function do(VehicleEntity $fleet) : OODBBean
+    public static function do(Vehicle $vehicle) : int
     {
-        $dtoVehicle = VehicleDto::createFromEntity($fleet);
+        $bean = VehicleTransformer::entityToBean($vehicle);
 
-        return VehicleDtoToBean::dtoToBean($dtoVehicle);
+        return (int) R::store($bean);
     }
 }

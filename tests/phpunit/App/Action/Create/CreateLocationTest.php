@@ -13,5 +13,6 @@ class CreateLocationTest extends TestCase
     public function testDo() : void
     {
         $this->assertInstanceOf(Location::class, CreateLocation::do('vers', 'la'));
+        $this->assertInstanceOf(Location::class, CreateLocation::do('vers', 'la', 12));
     }
 }

@@ -9,11 +9,3 @@ services:
     working_dir: /app
     init: true
     user: "$USER_ID:$GROUP_ID"
-
-  db:
-    image: postgres:14-bullseye
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: 'undeuxtroisquatre'
-      POSTGRES_DB: 'app'
-

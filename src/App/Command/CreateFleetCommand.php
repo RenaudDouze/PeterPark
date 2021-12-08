@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace App\Command;
 
 use \App\Action\Create\CreateFleet;
+use \App\Action\Save\SaveFleet;
+use \Infra\Database\Db;
 use \Symfony\Component\Console\Command\Command;
 use \Symfony\Component\Console\Input\InputArgument;
 use \Symfony\Component\Console\Input\InputInterface;
@@ -22,9 +24,14 @@ class CreateFleetCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $fleet = CreateFleet::do($input->getArgument('userId'));
+        Db::connect();
 
-        echo $fleet->getOwnerId();
+        $fleet = CreateFleet::do($input->getArgument('userId'));
+        $id = SaveFleet::do($fleet);
+
+        $output->writeln('Fleet saved. Id is `' . $id . '`');
+
+        Db::disconnect();
 
         return Command::SUCCESS;
     }

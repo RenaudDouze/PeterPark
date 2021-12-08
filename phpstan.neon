@@ -2,5 +2,5 @@ parameters:
 	ignoreErrors:
 		- '#Property Infra\\Exception\\[a-zA-Z0-9\\_]+::\$message has no type specified.#'
 		- '#Access to an undefined property RedBeanPHP\\OODBBean::\$[a-zA-Z0-9\\_]+.#'
-		- '#Method Infra\\Database\\DtoToBean\\[a-zA-Z0-9\\_]+::dtoToBean\(\) return type has no value type specified in iterable type RedBeanPHP\\OODBBean.#'
-		- '#Method App\\Action\\Save\\[a-zA-Z0-9\\_]+::do\(\) return type has no value type specified in iterable type RedBeanPHP\\OODBBean.#'
+		- '#Cannot access property \$[a-zA-Z0-9\\_]+ on array|RedBeanPHP\\OODBBean.#'
+		- '#Parameter \#2 \$id of static method RedBeanPHP\\Facade::load\(\) expects int, int\|string given.#'

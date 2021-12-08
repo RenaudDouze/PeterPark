@@ -6,6 +6,10 @@ namespace Domain\Entity;
 
 class Fleet
 {
+    public const BEAN_NAME = 'fleet';
+
+    /** @var int|null Database id */
+    private ?int $id = null;
     /** @var array<\Domain\Entity\Vehicle>  */
     private array $vehicles = [];
 
@@ -42,5 +46,15 @@ class Fleet
     public function getVehicles() : array
     {
         return $this->vehicles;
+    }
+
+    public function getId() : ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id) : void
+    {
+        $this->id = $id;
     }
 }

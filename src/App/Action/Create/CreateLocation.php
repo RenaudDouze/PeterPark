@@ -8,8 +8,9 @@ use \Domain\Entity\Location;
 
 class CreateLocation
 {
-    public static function do(string $longitude, string $latitude) : Location
+    public static function do(string $latitude, string $longitude, ?float $altitude = null) : Location
     {
-        return new Location($longitude, $latitude);
+        return new Location($latitude, $longitude, $altitude
+            ?? 0);
     }
 }

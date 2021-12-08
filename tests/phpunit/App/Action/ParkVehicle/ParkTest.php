@@ -24,10 +24,33 @@ class ParkTest extends TestCase
         $this->assertEquals($location, DudeWheresMyCar::get($vehicle));
     }
 
+    public function testDoWithAltitude() : void
+    {
+        $vehicle = new Vehicle('one');
+        $location = new Location('ici', 'ici', 42);
+
+        $this->assertNull(DudeWheresMyCar::get($vehicle));
+
+        Park::do($vehicle, $location);
+
+        $this->assertEquals($location, DudeWheresMyCar::get($vehicle));
+    }
+
     public function testDoException() : void
     {
         $vehicle = new Vehicle('one');
         $location = new Location('ici', 'ici');
+
+        Park::do($vehicle, $location);
+
+        $this->expectException(\RuntimeException::class);
+        Park::do($vehicle, $location);
+    }
+
+    public function testDoWithAltitudeException() : void
+    {
+        $vehicle = new Vehicle('one');
+        $location = new Location('ici', 'ici', 51);
 
         Park::do($vehicle, $location);
 

@@ -4,17 +4,16 @@ declare(strict_types = 1);
 
 namespace App\Action\Save;
 
-use \Domain\Entity\Fleet as FleetEntity;
-use \Infra\Database\Dto\Fleet as FleetDto;
-use \Infra\Database\DtoToBean\Fleet as FleetDtoToBean;
-use \RedBeanPHP\OODBBean;
+use \Domain\Entity\Fleet;
+use \Infra\Database\Transformer\FleetTransformer;
+use \RedBeanPHP\R;
 
 class SaveFleet
 {
-    public static function do(FleetEntity $fleet) : OODBBean
+    public static function do(Fleet $fleet) : int
     {
-        $dtoFleet = FleetDto::createFromEntity($fleet);
+        $bean = FleetTransformer::entityToBean($fleet);
 
-        return FleetDtoToBean::dtoToBean($dtoFleet);
+        return (int) R::store($bean);
     }
 }

@@ -46,3 +46,9 @@ To use PHPCBF
 ```bash
 docker-compose run --rm php ./vendor/bin/phpcbf --standard=vendor/infinityloop-dev/coding-standard/InfinityloopCodingStandard/ruleset.xml src/ tests/ features/bootstrap
 ```
+
+To use Cloc
+
+```bash
+docker run --rm -v $PWD:/tmp aldanial/cloc --exclude-dir=vendor,tests  /tmp
+```
