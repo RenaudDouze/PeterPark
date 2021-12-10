@@ -8,8 +8,8 @@ use \Domain\Entity\Fleet;
 
 class CreateFleet
 {
-    public static function do() : Fleet
+    public static function do(string $ownerId) : Fleet
     {
-        return new Fleet();
+        return new Fleet($ownerId);
     }
 }

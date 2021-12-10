@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		- '#Property Infra\\Exception\\[a-zA-Z0-9\\_]+::\$message has no type specified.#'
+		- '#Access to an undefined property RedBeanPHP\\OODBBean::\$[a-zA-Z0-9\\_]+.#'
+		- '#Cannot access property \$[a-zA-Z0-9\\_]+ on array|RedBeanPHP\\OODBBean.#'
+		- '#Parameter \#2 \$id of static method RedBeanPHP\\Facade::load\(\) expects int, int\|string given.#'

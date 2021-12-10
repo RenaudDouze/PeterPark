@@ -8,8 +8,8 @@ use \Domain\Entity\Vehicle;
 
 class CreateVehicle
 {
-    public static function do() : Vehicle
+    public static function do(string $plateNumber) : Vehicle
     {
-        return new Vehicle();
+        return new Vehicle($plateNumber);
     }
 }

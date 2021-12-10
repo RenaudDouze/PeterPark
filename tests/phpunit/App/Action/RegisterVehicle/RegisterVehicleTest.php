@@ -13,8 +13,8 @@ class RegisterVehicleTest extends TestCase
 {
     public function testDo() : void
     {
-        $vehicle = new Vehicle();
-        $fleet = new Fleet();
+        $vehicle = new Vehicle('one');
+        $fleet = new Fleet("Joe l'embrouille");
 
         $this->assertFalse($fleet->isIn($vehicle));
 
@@ -25,8 +25,8 @@ class RegisterVehicleTest extends TestCase
 
     public function testDoException() : void
     {
-        $vehicle = new Vehicle();
-        $fleet = new Fleet();
+        $vehicle = new Vehicle('one');
+        $fleet = new Fleet('Joey Tribbiani');
 
         $this->assertSame($fleet, RegisterVehicle::do($vehicle, $fleet));
 

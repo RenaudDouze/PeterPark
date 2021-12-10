@@ -8,13 +8,17 @@ class Vehicle
 {
     // Better with an uuid
     // The only purpose is to differentiate each Vehicle
-    private string $id;
+    public const BEAN_NAME = 'vehicle';
+
+    /** @var int|null Database id */
+    private ?int $id = null;
+    /** @var \Domain\Entity\Location|null */
     private ?Location $location = null;
 
-    public function __construct(?string $id = null)
+    public function __construct(
+        private string $plateNumber,
+    )
     {
-        $this->id = $id
-            ?? \uniqid();
     }
 
     public function whereIs() : ?Location
@@ -29,5 +33,20 @@ class Vehicle
         }
 
         $this->location = $location;
+    }
+
+    public function getPlateNumber() : string
+    {
+        return $this->plateNumber;
+    }
+
+    public function getId() : ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id) : void
+    {
+        $this->id = $id;
     }
 }

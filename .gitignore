@@ -2,3 +2,5 @@
 /vendor/
 /.env
 /.phpunit.result.cache
+/tests/resources/db/file.db
+/tests/resources/db/test.db
